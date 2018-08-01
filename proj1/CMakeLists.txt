@@ -1,0 +1,4 @@
+MAKE_LIBRARY(proj1
+	DEPENDENCIES	
+		${Boost_LIBRARIES}
+)
