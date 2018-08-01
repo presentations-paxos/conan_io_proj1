@@ -1,5 +1,0 @@
-[requires]
-boost_format/[>1.63.0,=~1.68.0]@bincrafters/stable
-
-[generators]
-cmake
