@@ -2,27 +2,21 @@ from conans import ConanFile, CMake, tools
 import os
 
 class Proj1Conan(ConanFile):
-    name = os.environ['PROJ1_NAME'] 
+    name = os.environ['PROJ1_NAME']
     version = os.environ['PROJ1_VER']
 
     license = "Public Domain"
-    url = "http://gitlab/demo/proj1"
-    description = "Say hello"
+    url = "http://gitlab:8080/demo/proj1"
+    description = "Say Hello Library"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
     default_options = "shared=False"
     generators = "cmake"
 
+    requires = "boost_format/[>1.63.0,=~1.68.0]@bincrafters/stable"
+
     def source(self):
-        self.run("git clone https://gitlab:8080/demo/proj1.git")
-        self.run("cd proj1 && git checkout static_shared")
-        # This small hack might be useful to guarantee proper /MT /MD linkage
-        # in MSVC if the packaged project doesn't have variables to set it
-        # properly
-        tools.replace_in_file("proj1/CMakeLists.txt", "PROJECT(MyProj1)",
-                              '''PROJECT(MyProj1)
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()''')
+        self.run("git clone http://gitlab:8080/demo/proj1.git")
 
     def build(self):
         cmake = CMake(self)
@@ -30,8 +24,8 @@ conan_basic_setup()''')
         cmake.build()
 
     def package(self):
-        self.copy("*.hpp", dst="include/proj1", src="proj1/proj1")
-        self.copy("*hello.lib", dst="lib", keep_path=False)
+        self.copy("*.hpp", dst="include", src="proj1")
+        self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
         self.copy("*.dylib", dst="lib", keep_path=False)
