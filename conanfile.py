@@ -25,11 +25,11 @@ class Proj1Conan(ConanFile):
 
     def package(self):
         self.copy("*.hpp", dst="include", src="proj1")
-        self.copy("*.lib", dst="lib", keep_path=False)
-        self.copy("*.dll", dst="bin", keep_path=False)
-        self.copy("*.so", dst="lib", keep_path=False)
-        self.copy("*.dylib", dst="lib", keep_path=False)
-        self.copy("*.a", dst="lib", keep_path=False)
+        self.copy("*.lib", dst="lib", src="lib", keep_path=False)
+        self.copy("*.dll", dst="bin", src="bin", keep_path=False)
+        self.copy("*.so", dst="lib", src="bin", keep_path=False)
+        self.copy("*.dylib", dst="lib", src="bin", keep_path=False)
+        self.copy("*.a", dst="lib", src="lib", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = ["proj1"]
