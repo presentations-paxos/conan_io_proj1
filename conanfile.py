@@ -19,7 +19,7 @@ class Proj1Conan(ConanFile):
         self.run("git clone http://gitlab:8080/demo/proj1.git")
 
     def build(self):
-        cmake = CMake(self)
+        cmake = CMake(self,generator="Ninja")
         cmake.configure(source_folder="proj1")
         cmake.build()
 
