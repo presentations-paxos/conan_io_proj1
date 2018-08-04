@@ -14,9 +14,15 @@ class Proj1Conan(ConanFile):
 
     requires = "boost_format/[>1.63.0,=~1.68.0]@bincrafters/stable"
 
-    def configure():
+    def configure(self):
         if self.setting.os == "Linux" and not self.setting.os.distro:
-            raise ConanException("On Linux, distro setting must be defined.")
+            raise ConanException("On Linux, 'distro' setting must be defined.")
+
+        if self.setting.os == "Macos" and not self.setting.os.version:
+            raise ConanException("On macOS, 'version' must be defined.")
+
+        if self.setting.os == "Windows" and not self.setting.os.subsystem:
+            raise ConanException("On Windows, 'subsystem' must be defined.")
 
     def source(self):
         self.run("git clone http://gitlab:8080/demo/proj1.git")
