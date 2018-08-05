@@ -5,6 +5,8 @@ from conans import ConanFile, CMake, tools
 
 class Proj1TestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
+    options = {"shared": [True, False]}
+    default_options = "shared=False"
     generators = "cmake"
 
     def build(self):
