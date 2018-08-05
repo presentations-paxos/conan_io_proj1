@@ -1,4 +1,5 @@
 from conans import ConanFile, CMake, tools
+from conans.errors import ConanException
 
 class Proj1Conan(ConanFile):
     #name = proj1 
@@ -15,13 +16,13 @@ class Proj1Conan(ConanFile):
     requires = "boost_format/[>1.63.0,=~1.68.0]@bincrafters/stable"
 
     def configure(self):
-        if self.setting.os == "Linux" and not self.setting.os.distro:
+        if self.settings.os == "Linux" and not self.settings.os.distro:
             raise ConanException("On Linux, 'distro' setting must be defined.")
 
-        if self.setting.os == "Macos" and not self.setting.os.version:
+        if self.settings.os == "Macos" and not self.settings.os.version:
             raise ConanException("On macOS, 'version' must be defined.")
 
-        if self.setting.os == "Windows" and not self.setting.os.subsystem:
+        if self.settings.os == "Windows" and not self.settings.os.subsystem:
             raise ConanException("On Windows, 'subsystem' must be defined.")
 
     def source(self):
