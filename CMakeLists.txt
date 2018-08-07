@@ -6,6 +6,6 @@ include(_cmake/config.cmake)
 include(_cmake/dependencies.cmake)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()
+conan_basic_setup(TARGETS)
 
 add_subdirectory(proj1)
