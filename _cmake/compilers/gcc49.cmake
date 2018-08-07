@@ -1,6 +1,4 @@
 add_definitions(
-	    --std=c++11
-
             -Wall
             -Wextra 
 
@@ -18,6 +16,6 @@ endif()
 
 if(${CMAKE_BUILD_TYPE} MATCHES "Release")
     add_definitions(
-	-O4
+	-O3
     )
 endif()

@@ -1,7 +1,4 @@
 add_definitions(
-	    --std=c++11
-	    --stdlib=libc++
-
             -Wall
             -Wextra 
 
