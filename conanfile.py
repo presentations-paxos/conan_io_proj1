@@ -8,7 +8,7 @@ class Proj1Conan(ConanFile):
     license = "Public Domain"
     url = "http://gitlab:8080/demo/proj1"
     description = "Say Hello Library"
-    settings = "os", "compiler", "build_type", "arch"
+    settings = "cppstd", "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
     default_options = "shared=False"
     generators = "cmake"
