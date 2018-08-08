@@ -1,25 +1,13 @@
 image: gcc
 
-config:
-  stage: config
-  script: echo "config..."
-  #script: conan config install --type git http://192.168.0.105:8080/demo/conan_settings.git 
-  
 build:
   stage: build
-  script: echo hello
+  script:
+    - echo "config..."
+    - echo "linting..."
+    - echo "cppcheck..."
+    - echo "building..."
 
-  script: 
-    echo "building..."
-
-lint:
-    stage: link
-    script: echo "linting..."
-    
-cppcheck:
-    stage: cppcheck
-    script: echo "running cppcheck..."
-
-upload:
-    stage: upload
+deploy:
+    stage: deploy
     script: conan upload -r artifactory proj1/`semver`@gitlab/develop
