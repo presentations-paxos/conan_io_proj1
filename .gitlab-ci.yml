@@ -3,6 +3,7 @@ image: gcc
 build:
   stage: build
   script:
+    - alias semver="git describe --long | sed -e 's/\(.*\)\-\(.*\)\-\(.*\)/\1\-\2+\3/g'"
     - echo "config..."
     - echo "linting..."
     - echo "cppcheck..."
